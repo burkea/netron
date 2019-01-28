@@ -43,8 +43,10 @@ caffe2.ModelFactory = class {
                 }
             }
         }
-        if (identifier.endsWith('predict_net.pbtxt') || identifier.endsWith('predict_net.prototxt') ||
-            identifier.endsWith('init_net.pbtxt') || identifier.endsWith('init_net.prototxt')) {
+        if (extension == 'pbtxt' || extension == 'prototxt') {
+            if (identifier.endsWith('predict_net.pbtxt') || identifier.endsWith('predict_net.prototxt')) {
+                return true;
+            }
             tags = context.tags('pbtxt');
             if (tags.op) {
                 return true;
